@@ -36,9 +36,6 @@ export default {
     walletConnected() {
       return this.$store.state.walletConnected; // 从 Vuex 获取钱包连接状态
     },
-    connectedAccount() {
-    return this.$store.state.connectedAccount;
-    },
   },
   methods: {
     toggleLanguage() {
@@ -69,12 +66,13 @@ export default {
     },
     sendWalletAddressToBackend() {
       const walletAddress = this.connectedAccount;
-      console.log(walletAddress)
+
       if (walletAddress) {
-        fetch('/api/connect_wallet', {
+        fetch('/api/connect_wallet', {  // 改为 Laravel 后端的 API 路径
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'), // 添加 CSRF 保护
           },
           body: JSON.stringify({ wallet_address: walletAddress }),
         })
@@ -88,7 +86,7 @@ export default {
       } else {
         console.error('未能获取到钱包地址');
       }
-    },
+    }
   },
 };
 

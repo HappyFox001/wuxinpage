@@ -38,7 +38,7 @@ export default {
     },
     connectedAccount() {
     return this.$store.state.connectedAccount;
-    },
+  },
   },
   methods: {
     toggleLanguage() {

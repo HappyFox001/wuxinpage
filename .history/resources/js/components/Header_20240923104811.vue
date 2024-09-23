@@ -36,9 +36,6 @@ export default {
     walletConnected() {
       return this.$store.state.walletConnected; // 从 Vuex 获取钱包连接状态
     },
-    connectedAccount() {
-    return this.$store.state.connectedAccount;
-    },
   },
   methods: {
     toggleLanguage() {
@@ -69,9 +66,9 @@ export default {
     },
     sendWalletAddressToBackend() {
       const walletAddress = this.connectedAccount;
-      console.log(walletAddress)
+
       if (walletAddress) {
-        fetch('/api/connect_wallet', {
+        fetch('http://127.0.0.1:5000/connect_wallet', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

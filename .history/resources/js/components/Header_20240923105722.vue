@@ -36,9 +36,6 @@ export default {
     walletConnected() {
       return this.$store.state.walletConnected; // 从 Vuex 获取钱包连接状态
     },
-    connectedAccount() {
-    return this.$store.state.connectedAccount;
-    },
   },
   methods: {
     toggleLanguage() {
